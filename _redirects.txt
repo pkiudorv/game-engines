@@ -1,0 +1,1 @@
+/proxy/*  https://game-msjyo479g-webrs-projects.vercel.app/:splat  200

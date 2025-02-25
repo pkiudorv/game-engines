@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Engine Finder | Discover What Powers Your Favorite Games</title>
+    <meta name="description" content="Find out which game engine powers your favorite video games. Search by game title and explore engines like Unreal Engine, Unity, Frostbite, Source, and more.">
+	<meta name="keywords" content="game engine finder, game engine search, what engine does this game use, Unreal Engine, Unity, Source Engine, Frostbite, CryEngine, RAGE, AnvilNext">
+	<meta property="og:title" content="Game Engine Finder - Find Out What Engine Your Favorite Games Use">
+	<meta property="og:description" content="Find out which game engine powers your favorite video games. Search by title and discover engines like Unreal Engine, Unity, Source, and more.">
+	<meta property="og:image" content="https://imgur.com/a/0vBCuVf">
+	<meta property="og:url" content="https://gameengines.org">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Game Engine Finder">
+	<meta name="twitter:description" content="Find out what engine your favorite games use!">
+	<meta name="twitter:image" content="https://imgur.com/a/0vBCuVf">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+   <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Game Engine Finder",
+  "url": "https://yourwebsite.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://yourwebsite.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+	
+    <style>
+        body 
+		
+		{
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .slideshow img {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            left: 0;
+            top: 0;
+        }
+        
+        .slideshow img.active {
+            opacity: 1;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+            width: 90%;
+            max-width: 450px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        input {
+            width: 85%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            margin-bottom: 15px;
+            font-size: 1em;
+            text-align: center;
+        }
+        
+        button {
+            padding: 12px 25px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            background: #ff7eb3;
+            color: white;
+            border-radius: 8px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        
+        button:hover {
+            background: #ff4f81;
+            transform: scale(1.08);
+        }
+        
+        #results {
+            margin-top: 20px;
+            font-size: 1.2em;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .description, .footer {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #ccc;
+            max-width: 600px;
+        }
+        
+        .suggestions {
+            position: absolute;
+            background: white;
+            color: black;
+            width: 85%;
+            max-width: 450px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: none;
+            text-align: left;
+            z-index: 10;
+        }
+        
+        .suggestions div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        
+        .suggestions div:hover {
+            background: #ddd;
+        }
+		
+		.transparent-button {
+		position: absolute;
+		top: 20px; /* Adjust position */
+		right: 20px; /* Adjust position */
+		padding: 10px 20px;
+		font-size: 1em;
+		text-decoration: none;
+		color: white;
+		background: rgba(255, 255, 255, 0.2); /* Transparent background */
+		border: 2px solid rgba(255, 255, 255, 0.5);
+		border-radius: 8px;
+		transition: background 0.3s, transform 0.2s;
+		}
+
+		.transparent-button:hover {
+		background: rgba(255, 255, 255, 0.4);
+		transform: scale(1.05);
+		}
+
+    </style>
+</head>
+<body>
+    <div class="slideshow">
+        <img src="https://images7.alphacoders.com/980/thumb-1920-980709.png" class="active">
+        <img src="https://images6.alphacoders.com/135/1354629.jpeg">
+        <img src="https://images6.alphacoders.com/116/thumb-1920-1163165.jpg">
+    </div>
+    
+    <h1>Game Engine Finder</h1>
+	<a href="stats.html" class="transparent-button">View Game Engine Popularity</a>
+
+    <p class="description">Want to find out what game engine a game uses?</p>
+    <div class="container">
+        <input type="text" id="gameInput" placeholder="Enter game name" onkeyup="showSuggestions()">
+        <div id="suggestions" class="suggestions"></div>
+        <button onclick="findGameEngine()">Find Engine</button>
+        <div id="results"></div>
+    </div>
+    <p class="footer">Knowing the game engine used in a game can be beneficial for developers, modders, and enthusiasts looking to understand game mechanics, optimize performance, or develop similar games.</p>
+    
+    <script>
+  const gameData = {
+    "Halo": { engine: "Blam Engine", description: "The engine used for the Halo series, developed by Bungie and later enhanced by 343 Industries." },
+    "Counter-Strike": { engine: "GoldSrc", description: "Valve's modified Quake engine, which powered the original Counter-Strike and Half-Life games." },
+    "The Witcher 3": { engine: "REDengine 3", description: "CD Projekt Red's proprietary engine designed for open-world RPGs." },
+    "Fortnite": { engine: "Unreal Engine 5", description: "A powerful engine developed by Epic Games, known for its realistic graphics and performance." },
+    "Cyberpunk 2077": { engine: "REDengine 4", description: "An upgraded version of REDengine used for large-scale open-world environments." },
+    "Minecraft": { engine: "Java Engine", description: "A lightweight engine primarily running on Java, known for its blocky graphics and moddability." },
+    "DOOM (2016)": { engine: "id Tech 6", description: "Used for DOOM (2016), this engine is optimized for fast-paced action, featuring id Software’s Megatexture technology and Vulkan support." },
+    "The Front": { engine: "Unreal Engine 4", description: "A widely used, versatile engine developed by Epic Games, supporting high-end graphics, physics, and multiplayer networking." },
+    "Will to Live": { engine: "Unreal Engine 4", description: "A widely used, versatile engine developed by Epic Games, supporting high-end graphics, physics, and multiplayer networking." },
+    "Rust": { engine: "Unity", description: "A powerful, multi-platform engine favored for its ease of use and flexibility, widely used in indie and mobile game development." },
+    "7 Days to Die": { engine: "Unity", description: "A powerful, multi-platform engine favored for its ease of use and flexibility, widely used in indie and mobile game development." },
+    "DayZ": { engine: "Enfusion Engine", description: "Bohemia Interactive’s next-gen engine, built for realism in survival and military simulation games like DayZ." },
+    "GTA V": { engine: "RAGE Engine", description: "Rockstar Advanced Game Engine, designed for open-world games like GTA V and Red Dead Redemption 2, offering detailed environments and AI." },
+    "Battlefield 2042": { engine: "Frostbite 3", description: "EA DICE’s proprietary engine known for destructible environments and realistic visuals, used in Battlefield, FIFA, and Need for Speed." },
+    "Call of Duty: Modern Warfare": { engine: "IW Engine", description: "Infinity Ward’s proprietary engine for Call of Duty, optimized for fast-paced FPS gameplay with high responsiveness." },
+    "Red Dead Redemption 2": { engine: "RAGE Engine", description: "Rockstar Advanced Game Engine, designed for open-world games like GTA V and Red Dead Redemption 2, offering detailed environments and AI." },
+    "Assassin's Creed Valhalla": { engine: "AnvilNext 2.0", description: "Ubisoft’s open-world engine, powering Assassin’s Creed games with detailed historical settings and crowd AI." },
+    "Horizon Zero Dawn": { engine: "Decima", description: "Created by Guerrilla Games, used for Horizon Zero Dawn and Death Stranding, featuring photorealistic landscapes and AI-driven NPCs." },
+    "Far Cry 6": { engine: "Dunia Engine", description: "A heavily modified CryEngine variant used in the Far Cry series, known for its open-world rendering and dynamic weather." },
+    "Resident Evil Village": { engine: "RE Engine", description: "Capcom’s proprietary engine, offering high-fidelity visuals and smooth performance in games like Resident Evil Village." },
+    "Dying Light 2": { engine: "C-Engine", description: "Techland’s custom engine designed for Dying Light 2, supporting large-scale environments and fluid parkour movement." },
+    "The Elder Scrolls V: Skyrim": { engine: "Creation Engine", description: "Bethesda’s engine for Skyrim and Fallout 4, supporting extensive modding and large open-worlds." },
+    "Fallout 4": { engine: "Creation Engine", description: "Bethesda’s engine for Skyrim and Fallout 4, supporting extensive modding and large open-worlds." },
+    "Left 4 Dead 2": { engine: "Source Engine", description: "Valve’s successor to GoldSrc, used in Half-Life 2 and Left 4 Dead, featuring realistic physics and modding tools." },
+    "Half-Life 2": { engine: "Source Engine", description: "Valve’s successor to GoldSrc, used in Half-Life 2 and Left 4 Dead, featuring realistic physics and modding tools." },
+    "Overwatch": { engine: "Proprietary Blizzard Engine", description: "Blizzard Entertainment’s in-house engines used for Overwatch, StarCraft II, Diablo IV, and World of Warcraft, optimized for their respective genres." },
+    "League of Legends": { engine: "Proprietary Riot Engine", description: "Used for League of Legends, designed for fast-paced MOBA gameplay with responsive controls." },
+    "Valorant": { engine: "Unreal Engine 4", description: "A widely used, versatile engine developed by Epic Games, supporting high-end graphics, physics, and multiplayer networking." },
+    "Apex Legends": { engine: "Source Engine", description: "Valve’s successor to GoldSrc, used in Half-Life 2 and Left 4 Dead, featuring realistic physics and modding tools." },
+    "PUBG": { engine: "Unreal Engine 4", description: "A widely used, versatile engine developed by Epic Games, supporting high-end graphics, physics, and multiplayer networking." },
+    "Tarkov": { engine: "Unity", description: "A powerful, multi-platform engine favored for its ease of use and flexibility, widely used in indie and mobile game development." },
+    "Starfield": { engine: "Creation Engine 2", description: "The upgraded version of Bethesda’s engine, designed for Starfield with improved lighting and procedural generation." },
+    "Death Stranding": { engine: "Decima Engine", description: "Created by Guerrilla Games, used for Horizon Zero Dawn and Death Stranding, featuring photorealistic landscapes and AI-driven NPCs." },
+    "Control": { engine: "Northlight Engine", description: "Remedy Entertainment’s engine, powering Control and Alan Wake 2 with advanced physics and destruction mechanics." },
+    "Alan Wake 2": { engine: "Northlight Engine", description: "Remedy Entertainment’s engine, powering Control and Alan Wake 2 with advanced physics and destruction mechanics." },
+    "God of War (2018)": { engine: "Santa Monica Proprietary Engine", description: "Custom-built for God of War (2018), optimized for cinematic action and detailed character models." },
+    "Spider-Man Remastered": { engine: "Insomniac Engine", description: "Used in Marvel’s Spider-Man, featuring smooth traversal mechanics and realistic cityscapes." },
+    "The Last of Us Part II": { engine: "Naughty Dog Engine", description: "Optimized for PlayStation exclusives, known for its lifelike animation and storytelling in The Last of Us series." },
+    "Elden Ring": { engine: "Souls Engine", description: "FromSoftware’s engine used for Dark Souls, Bloodborne, Sekiro, and Elden Ring, focused on precise combat and atmospheric world design." },
+    "Dark Souls III": { engine: "Souls Engine", description: "FromSoftware’s engine used for Dark Souls, Bloodborne, Sekiro, and Elden Ring, focused on precise combat and atmospheric world design." },
+    "Bloodborne": { engine: "Souls Engine", description: "FromSoftware’s engine used for Dark Souls, Bloodborne, Sekiro, and Elden Ring, focused on precise combat and atmospheric world design." },
+    "Sekiro: Shadows Die Twice": { engine: "Souls Engine", description: "FromSoftware’s engine used for Dark Souls, Bloodborne, Sekiro, and Elden Ring, focused on precise combat and atmospheric world design." },
+    "Star Wars Jedi: Survivor": { engine: "Unreal Engine 4", description: "A widely used, versatile engine developed by Epic Games, supporting high-end graphics, physics, and multiplayer networking." },
+    "Star Wars Battlefront II": { engine: "Frostbite 3", description: "EA DICE’s proprietary engine known for destructible environments and realistic visuals, used in Battlefield, FIFA, and Need for Speed." },
+    "Need for Speed Heat": { engine: "Frostbite 3", description: "EA DICE’s proprietary engine known for destructible environments and realistic visuals, used in Battlefield, FIFA, and Need for Speed." },
+    "FIFA 23": { engine: "Frostbite 3", description: "EA DICE’s proprietary engine known for destructible environments and realistic visuals, used in Battlefield, FIFA, and Need for Speed." },
+    "Madden NFL 23": { engine: "Frostbite 3", description: "EA DICE’s proprietary engine known for destructible environments and realistic visuals, used in Battlefield, FIFA, and Need for Speed." },
+    "The Sims 4": "Proprietary EA Engine",
+    "Hitman 3": { engine: "Glacier Engine", description: "IO Interactive’s engine designed for the Hitman series, supporting large sandbox environments and AI behavior." },
+    "Crysis 3": { engine: "CryEngine", description: "A visually stunning engine by Crytek, famous for pushing graphical boundaries in Crysis and other games." },
+    "Warframe": { engine: "Evolution Engine", description: "Developed by Digital Extremes, this engine powers Warframe, supporting high-speed combat and seamless online play." },
+    "Destiny 2": { engine: "Tiger Engine", description: "Bungie’s proprietary engine, built for Destiny 2 with large-scale online worlds and dynamic events." },
+    "Forza Horizon 5": { engine: "ForzaTech", description: "Turn 10 Studios’ engine optimized for Forza Horizon and Forza Motorsport, focusing on realistic car physics and visuals." },
+    "Gran Turismo 7": { engine: "Proprietary Polyphony Engine", description: "Used for Gran Turismo 7, designed for ultra-realistic driving simulations." },
+    "RimWorld": { engine: "Unity", description: "A powerful, multi-platform engine favored for its ease of use and flexibility, widely used in indie and mobile game development." },
+    "Terraria": { engine: "Custom Engine (XNA-based)", description: "Terraria’s engine, originally built on Microsoft’s XNA framework, later modified for cross-platform support." },
+    "Stardew Valley": { engine: "Custom Engine" },
+    "Celeste": { engine: "XNA/Monogame", description: "An open-source framework used for Celeste and other indie games, offering 2D and 3D support" },
+    "Hollow Knight": { engine: "Unity", description: "A powerful, multi-platform engine favored for its ease of use and flexibility, widely used in indie and mobile game development." },
+    "Dead Cells": { engine: "Custom Engine" },
+    "Cuphead": { engine: "Unity", description: "A powerful, multi-platform engine favored for its ease of use and flexibility, widely used in indie and mobile game development." },
+    "Slay the Spire": { engine: "LibGDX", description: "A lightweight Java-based engine used in Slay the Spire and other indie games." },
+    "Subnautica": { engine: "Unity", description: "A powerful, multi-platform engine favored for its ease of use and flexibility, widely used in indie and mobile game development." },
+    "No Man's Sky": { engine: "Proprietary Hello Games Engine", description: "Built for No Man’s Sky, designed for procedural generation and infinite open-world exploration." },
+    "Kerbal Space Program": { engine: "Unity", description: "A powerful, multi-platform engine favored for its ease of use and flexibility, widely used in indie and mobile game development." },
+    "Factorio": { engine: "Custom Engine" },
+    "Cities: Skylines": { engine: "Unity", description: "A powerful, multi-platform engine favored for its ease of use and flexibility, widely used in indie and mobile game development." },
+    "Anno 1800": { engine: "Dunia Engine", description: "A heavily modified CryEngine variant used in the Far Cry series, known for its open-world rendering and dynamic weather." },
+    "Frostpunk": { engine: "Custom Engine" },
+    "Planet Coaster": { engine: "COBRA Engine", description: "Frontier Developments’ in-house engine, used for Planet Coaster and RollerCoaster Tycoon 3." },
+    "RollerCoaster Tycoon 3": { engine: "COBRA Engine", description: "Frontier Developments’ in-house engine, used for Planet Coaster and RollerCoaster Tycoon 3." },
+    "Age of Empires IV": { engine: "Relic Engine", description: "Developed by Relic Entertainment, used in Age of Empires IV and Company of Heroes for large-scale RTS battles." },
+    "Total War: Warhammer III": { engine: "Warscape Engine", description: "The engine behind Total War games, optimized for massive real-time battles with thousands of units." },
+    "Company of Heroes 3": { engine: "Essence Engine", description: "Developed by Relic for Company of Heroes, offering advanced destruction physics and tactical AI." },
+    "StarCraft II": { engine: "Proprietary Blizzard Engine", description: "Blizzard Entertainment’s in-house engines used for Overwatch, StarCraft II, Diablo IV, and World of Warcraft, optimized for their respective genres." },
+    "Diablo IV": { engine: "Proprietary Blizzard Engine", description: "Blizzard Entertainment’s in-house engines used for Overwatch, StarCraft II, Diablo IV, and World of Warcraft, optimized for their respective genres." },
+    "World of Warcraft": { engine: "Proprietary Blizzard Engine", description: "Blizzard Entertainment’s in-house engines used for Overwatch, StarCraft II, Diablo IV, and World of Warcraft, optimized for their respective genres." },
+    "Hearthstone": { engine: "Unity", description: "A powerful, multi-platform engine favored for its ease of use and flexibility, widely used in indie and mobile game development." },
+    "Genshin Impact": { engine: "Unity", description: "A powerful, multi-platform engine favored for its ease of use and flexibility, widely used in indie and mobile game development." },
+    "Honkai: Star Rail": { engine: "Unity", description: "A powerful, multi-platform engine favored for its ease of use and flexibility, widely used in indie and mobile game development." },
+    "Persona 5": { engine: "ATLUS Proprietary Engine" },
+    "Shin Megami Tensei V": { engine: "Unreal Engine 4", description: "A widely used, versatile engine developed by Epic Games, supporting high-end graphics, physics, and multiplayer networking." },
+    "Pokemon Scarlet & Violet": { engine: "Proprietary Game Freak Engine", description: "Used in Pokémon Scarlet & Violet, supporting open-world mechanics and seamless exploration." },
+    "Super Mario Odyssey": { engine: "Proprietary Nintendo Engine", description: "Nintendo’s custom-built engines for games like Zelda, Mario, and Metroid, optimized for the Switch hardware." },
+    "Zelda: Breath of the Wild": { engine: "Proprietary Nintendo Engine", description: "Nintendo’s custom-built engines for games like Zelda, Mario, and Metroid, optimized for the Switch hardware." },
+    "Zelda: Tears of the Kingdom": { engine: "Proprietary Nintendo Engine", description: "Nintendo’s custom-built engines for games like Zelda, Mario, and Metroid, optimized for the Switch hardware." },
+    "Metroid Dread": { engine: "Mercurysteam Engine" },
+    "Fire Emblem: Three Houses": { engine: "Unreal Engine 4", description: "A widely used, versatile engine developed by Epic Games, supporting high-end graphics, physics, and multiplayer networking." },
+	"Enshrouded": { engine: "Proprietary Voxel Engine"},
+	"Tom Clancy's The Division": { engine: "Snowdrop", description: "Snowdrop (also known as Ubisoft Snowdrop) is a proprietary game engine created by Massive Entertainment and Ubisoft for use on Microsoft Windows, PlayStation 4, PlayStation 5, Xbox One, Xbox Series X/S, Nintendo Switch, Stadia, and Luna." }
+};
+
+        
+   function findGameEngine() {
+    const gameInput = document.getElementById("gameInput").value.trim();
+    const resultsDiv = document.getElementById("results");
+    const game = gameData[gameInput];
+
+    if (game) {
+        const { engine, description = "No description available." } = game;
+        resultsDiv.innerHTML = `<strong>${gameInput}</strong>: ${engine}<br><small>${description}</small>`;
+    } else {
+        resultsDiv.innerHTML = "Game not found.";
+    }
+}
+        
+        function showSuggestions() {
+            const input = document.getElementById("gameInput").value.toLowerCase();
+            const suggestionsBox = document.getElementById("suggestions");
+            
+            suggestionsBox.innerHTML = "";
+            if (!input) {
+                suggestionsBox.style.display = "none";
+                return;
+            }
+            
+            const matches = Object.keys(gameData).filter(game => game.toLowerCase().startsWith(input));
+            if (matches.length > 0) {
+                suggestionsBox.style.display = "block";
+                matches.forEach(game => {
+                    const div = document.createElement("div");
+                    div.textContent = game;
+                    div.onclick = function() {
+                        document.getElementById("gameInput").value = game;
+                        suggestionsBox.style.display = "none";
+                    };
+                    suggestionsBox.appendChild(div);
+                });
+            } else {
+                suggestionsBox.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
